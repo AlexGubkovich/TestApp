@@ -8,12 +8,12 @@ namespace TestApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : ControllerBase
+    public class CompaniesController : ControllerBase
     {
         private readonly CompanyContext context;
         private readonly IMapper mapper;
 
-        public CompanyController(CompanyContext context, IMapper mapper)
+        public CompaniesController(CompanyContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
@@ -29,7 +29,12 @@ namespace TestApp.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Company>> Get(int id)
         {
-            var company = await context.Companies.FindAsync(id);
+            var company = await context.Companies
+                .Include(x => x.History)
+                .Include(x => x.Employees)
+                .Include(x => x.Notes)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
             if (company == null)
                 return NotFound();
 
@@ -49,9 +54,34 @@ namespace TestApp.Controllers
             return Ok(company);
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("{id}/history")]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetHistory(int id)
         {
+            var orders = await context.Orders
+                .Where(o => o.CompanyId == id)
+                .ToListAsync();
+
+            return Ok(mapper.Map<IEnumerable<OrderDto>>(orders));
+        }
+
+        [HttpGet("{id}/notes")]
+        public async Task<ActionResult<IEnumerable<NoteDto>>> GetNotes(int id)
+        {
+            var notes = await context.Notes
+                .Where(o => o.CompanyId == id)
+                .ToListAsync();
+
+            return Ok(mapper.Map<IEnumerable<NoteDto>>(notes));
+        }
+
+        [HttpGet("{id}/employees")]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployees(int id)
+        {
+            var employees = await context.Employees
+                .Where(o => o.CompanyId == id)
+                .ToListAsync();
+
+            return Ok(mapper.Map<IEnumerable<EmployeeDto>>(employees));
         }
     }
 }
