@@ -68,7 +68,7 @@ namespace TestApp.Data
 
             modelBuilder.Entity<Employee>()
                 .HasOne(e => e.Note)
-                .WithOne(n => n.Employee)
+                .WithOne()
                 .HasForeignKey<Note>(k => k.EmployeeId)
                 .OnDelete(DeleteBehavior.NoAction);
 
