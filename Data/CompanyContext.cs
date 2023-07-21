@@ -54,6 +54,12 @@ namespace TestApp.Data
                 new Note { Id = 6, InvoiceNumber = 105, EmployeeId = employees[5].Id, CompanyId = companies[2].Id },
             };
 
+            modelBuilder.Entity<Employee>()
+                .HasOne(e => e.Note)
+                .WithOne(e => e.Employee)
+                .HasForeignKey<Note>(k => k.EmployeeId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<Company>()
                 .HasData(companies);
 
@@ -65,12 +71,6 @@ namespace TestApp.Data
 
             modelBuilder.Entity<Note>()
                 .HasData(notes);
-
-            modelBuilder.Entity<Employee>()
-                .HasOne(e => e.Note)
-                .WithOne()
-                .HasForeignKey<Note>(k => k.EmployeeId)
-                .OnDelete(DeleteBehavior.NoAction);
 
             base.OnModelCreating(modelBuilder);
         }

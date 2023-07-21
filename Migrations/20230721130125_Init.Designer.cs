@@ -12,8 +12,8 @@ using TestApp.Data;
 namespace TestApp.Migrations
 {
     [DbContext(typeof(CompanyContext))]
-    [Migration("20230720170358_SeedData")]
-    partial class SeedData
+    [Migration("20230721130125_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,7 +127,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 1,
-                            BirthDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6912),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1247),
                             CompanyId = 1,
                             FirstName = "John",
                             LastName = "Heart",
@@ -137,7 +137,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 2,
-                            BirthDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6960),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1292),
                             CompanyId = 1,
                             FirstName = "Olivia",
                             LastName = "Peyton",
@@ -147,7 +147,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 3,
-                            BirthDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6963),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1295),
                             CompanyId = 2,
                             FirstName = "Robert",
                             LastName = "Reagan",
@@ -157,7 +157,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 4,
-                            BirthDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6965),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1298),
                             CompanyId = 2,
                             FirstName = "Cynthia",
                             LastName = "Stanvick",
@@ -167,7 +167,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 5,
-                            BirthDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6967),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1300),
                             CompanyId = 3,
                             FirstName = "Tim",
                             LastName = "Cook",
@@ -177,7 +177,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 6,
-                            BirthDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6970),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1303),
                             CompanyId = 3,
                             FirstName = "Adam",
                             LastName = "Smith",
@@ -286,60 +286,58 @@ namespace TestApp.Migrations
                         {
                             Id = 1,
                             CompanyId = 1,
-                            OrderDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6974),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1306),
                             StoreCity = "Las Vegas"
                         },
                         new
                         {
                             Id = 2,
                             CompanyId = 1,
-                            OrderDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6977),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1309),
                             StoreCity = "Las Vegas"
                         },
                         new
                         {
                             Id = 3,
                             CompanyId = 2,
-                            OrderDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6979),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1310),
                             StoreCity = "San Jose"
                         },
                         new
                         {
                             Id = 4,
                             CompanyId = 2,
-                            OrderDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6980),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1312),
                             StoreCity = "San Jose"
                         },
                         new
                         {
                             Id = 5,
                             CompanyId = 3,
-                            OrderDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6982),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1314),
                             StoreCity = "Seattle"
                         },
                         new
                         {
                             Id = 6,
                             CompanyId = 3,
-                            OrderDate = new DateTime(2023, 7, 20, 20, 3, 58, 67, DateTimeKind.Local).AddTicks(6984),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1316),
                             StoreCity = "Seattle"
                         });
                 });
 
             modelBuilder.Entity("TestApp.Data.Employee", b =>
                 {
-                    b.HasOne("TestApp.Data.Company", "Company")
+                    b.HasOne("TestApp.Data.Company", null)
                         .WithMany("Employees")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("TestApp.Data.Note", b =>
                 {
-                    b.HasOne("TestApp.Data.Company", "Company")
+                    b.HasOne("TestApp.Data.Company", null)
                         .WithMany("Notes")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -351,20 +349,16 @@ namespace TestApp.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Company");
-
                     b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("TestApp.Data.Order", b =>
                 {
-                    b.HasOne("TestApp.Data.Company", "Company")
+                    b.HasOne("TestApp.Data.Company", null)
                         .WithMany("History")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("TestApp.Data.Company", b =>

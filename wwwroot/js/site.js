@@ -1,4 +1,17 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const uri = 'api/companies';
 
-// Write your JavaScript code.
+function getCompanies() {
+    fetch(uri)
+        .then(respose => respose.json())
+        .then(data => displayCompanies(data))
+        .catch(error => console.error('Unable to get items.', error));
+}
+
+function displayCompanies(companies) {
+    $.each(companies, function (i, company) {
+        $('#companiesTable > tbody:last-child')
+            .append(`<tr><td>${company.name}</td><td>${company.city}</td><td>${company.state}</td><td>${company.phone}</td></tr>`)
+    })
+}
+
+window.onload = getCompanies();

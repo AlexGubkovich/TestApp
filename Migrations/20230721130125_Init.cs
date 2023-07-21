@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TestApp.Migrations
 {
     /// <inheritdoc />
@@ -97,6 +99,55 @@ namespace TestApp.Migrations
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "Id", "Address", "City", "Name", "Phone", "State" },
+                values: new object[,]
+                {
+                    { 1, "702 8th Street", "Atlanta", "Super Mart of the West", "(800) 555-55-99", "Georgia" },
+                    { 2, "702 8th Street", "Dallas", "Electronic Deport", "(900) 556-33-33", "Texas" },
+                    { 3, "702 8th Street", "Bentonville", "ElectricMax", "(763) 888-00-11", "Arkansas" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "Id", "BirthDate", "CompanyId", "FirstName", "LastName", "Position", "Title" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1247), 1, "John", "Heart", "CEO", "Mr. " },
+                    { 2, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1292), 1, "Olivia", "Peyton", "Developer", "Mrs. " },
+                    { 3, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1295), 2, "Robert", "Reagan", "Manager", "Mr. " },
+                    { 4, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1298), 2, "Cynthia", "Stanvick", "TeamLead", "Mrs. " },
+                    { 5, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1300), 3, "Tim", "Cook", "CEO", "Mr. " },
+                    { 6, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1303), 3, "Adam", "Smith", "Developer", "Mr. " }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "CompanyId", "OrderDate", "StoreCity" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1306), "Las Vegas" },
+                    { 2, 1, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1309), "Las Vegas" },
+                    { 3, 2, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1310), "San Jose" },
+                    { 4, 2, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1312), "San Jose" },
+                    { 5, 3, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1314), "Seattle" },
+                    { 6, 3, new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1316), "Seattle" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Notes",
+                columns: new[] { "Id", "CompanyId", "EmployeeId", "InvoiceNumber" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 100 },
+                    { 2, 1, 2, 101 },
+                    { 3, 2, 3, 102 },
+                    { 4, 2, 4, 103 },
+                    { 5, 3, 5, 104 },
+                    { 6, 3, 6, 105 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -124,7 +124,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 1,
-                            BirthDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2065),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1247),
                             CompanyId = 1,
                             FirstName = "John",
                             LastName = "Heart",
@@ -134,7 +134,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 2,
-                            BirthDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2114),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1292),
                             CompanyId = 1,
                             FirstName = "Olivia",
                             LastName = "Peyton",
@@ -144,7 +144,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 3,
-                            BirthDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2116),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1295),
                             CompanyId = 2,
                             FirstName = "Robert",
                             LastName = "Reagan",
@@ -154,7 +154,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 4,
-                            BirthDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2118),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1298),
                             CompanyId = 2,
                             FirstName = "Cynthia",
                             LastName = "Stanvick",
@@ -164,7 +164,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 5,
-                            BirthDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2120),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1300),
                             CompanyId = 3,
                             FirstName = "Tim",
                             LastName = "Cook",
@@ -174,7 +174,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 6,
-                            BirthDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2124),
+                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1303),
                             CompanyId = 3,
                             FirstName = "Adam",
                             LastName = "Smith",
@@ -283,42 +283,42 @@ namespace TestApp.Migrations
                         {
                             Id = 1,
                             CompanyId = 1,
-                            OrderDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2126),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1306),
                             StoreCity = "Las Vegas"
                         },
                         new
                         {
                             Id = 2,
                             CompanyId = 1,
-                            OrderDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2128),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1309),
                             StoreCity = "Las Vegas"
                         },
                         new
                         {
                             Id = 3,
                             CompanyId = 2,
-                            OrderDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2130),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1310),
                             StoreCity = "San Jose"
                         },
                         new
                         {
                             Id = 4,
                             CompanyId = 2,
-                            OrderDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2132),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1312),
                             StoreCity = "San Jose"
                         },
                         new
                         {
                             Id = 5,
                             CompanyId = 3,
-                            OrderDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2133),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1314),
                             StoreCity = "Seattle"
                         },
                         new
                         {
                             Id = 6,
                             CompanyId = 3,
-                            OrderDate = new DateTime(2023, 7, 20, 21, 2, 21, 203, DateTimeKind.Local).AddTicks(2136),
+                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1316),
                             StoreCity = "Seattle"
                         });
                 });
@@ -340,11 +340,13 @@ namespace TestApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TestApp.Data.Employee", null)
+                    b.HasOne("TestApp.Data.Employee", "Employee")
                         .WithOne("Note")
                         .HasForeignKey("TestApp.Data.Note", "EmployeeId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("TestApp.Data.Order", b =>
