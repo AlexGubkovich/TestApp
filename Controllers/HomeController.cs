@@ -6,21 +6,14 @@ namespace TestApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Details()
+        public IActionResult Details([FromRoute] int id)
         {
-            return View();
+            return Ok(id);
         }
 
         public IActionResult Privacy()

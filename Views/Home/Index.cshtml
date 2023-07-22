@@ -1,20 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Companies";
 }
 
-<div class="row justify-content-between">
-    <div class="col-auto align-content-center">
-        <h5 style="color:black">Companies</h5>
+<div class="row justify-content-between mb-2">
+    <div class="col-auto">
+        <h5>Companies</h5>
     </div>
-    <div class="col-auto btn-group">
-        <a href="#" class="btn btn-primary active" aria-current="page">Active link</a>
-        <a href="#" class="btn btn-primary">Link</a>
-        <a href="#" class="btn btn-primary">Link</a>
+    <div class="col-auto btn-group" role="group">
+        <button type="button" class="btn btn-outline-light shadow-none">
+            <img src="~/images/plus-lg.svg"/>
+        </button>
+        <button type="button" class="btn btn-outline-light shadow-none">
+            <img src="~/images/pencil-fill.svg" />
+        </button>
     </div>
 </div>
 
 <div class="row">
-    <table id="companiesTable" class="table table-bordered caption-top">
+    <table id="companiesTable" class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">Company Name</th>
@@ -28,3 +31,25 @@
     </table>
 </div>
 
+@section Scripts {
+    <script>
+        const getCompaniesUri = '@Url.Action("Get", "Companies")';
+
+        $(document).ready(getRequest(getCompaniesUri, displayCompanies));
+
+        function displayCompanies(companies) {
+            $.each(companies, function (i, company) {
+                $('table > tbody:last-child')
+                    .append(`
+                    <tr>
+                        <td>
+                            <a href="/Home/Details/${company.id}" class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">${company.name}</a>
+                        </td>
+                        <td>${company.city}</td>
+                        <td>${company.state}</td>
+                        <td>${company.phone}</td>
+                    </tr>`)
+            })
+        }
+    </script>
+}

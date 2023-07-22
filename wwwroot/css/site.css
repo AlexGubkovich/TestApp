@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+thead th {
+    color: grey !important;
+    font-weight: normal !important;
+}
