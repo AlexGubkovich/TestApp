@@ -7,6 +7,7 @@ namespace TestApp.Data.Dto
         public CompanyProfile()
         {
             CreateMap<Company, CompanyDto>().ReverseMap();
+            CreateMap<Company, CompanyFullDto>();
             CreateMap<Order, OrderDto>();
             CreateMap<Employee, EmployeeDto>();
             CreateMap<Note, NoteDto>()

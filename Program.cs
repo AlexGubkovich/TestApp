@@ -1,10 +1,12 @@
+using System.Text.Json.Serialization;
 using TestApp.Data;
 using TestApp.Data.Dto;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-services.AddControllersWithViews();
+services.AddControllersWithViews()
+    .AddJsonOptions(c => c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 services.AddDbContext<CompanyContext>();
 services.AddAutoMapper(typeof(CompanyProfile).Assembly);

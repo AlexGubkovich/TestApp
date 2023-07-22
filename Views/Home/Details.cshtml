@@ -1,0 +1,84 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Company Details";
+}
+
+<div class="row gx-5 mb-4">
+    <div class="col-auto">
+        <h5>Company Details</h5>
+    </div>
+    <div class="col-auto">
+        <h5 id="companyNameHeader" class="lead"></h5>
+    </div>
+</div>
+
+<div class="row gx-5 p-2">
+    <div class="col-auto border-top border-bottom">
+        <detail content-attributes="table-responsive" caption="History" button-images=@(new List<string> { "/images/refresh.svg" })>
+            <table id="history" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Store City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </detail>
+    </div>
+    <div class="col-auto border-top border-bottom">
+        <detail content-attributes="table-responsive" caption="Notes" 
+        button-images=@(new List<string> { "/images/add.svg", "/images/remove.svg", "/images/refresh.svg" })>
+            <table id="notes" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Store City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </detail>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const getCompanyUrl = '@Url.Action("Get", "Companies", new { id = Model })'
+        $(document).ready(getRequest(getCompanyUrl, displayCompanyDetails))
+
+        function displayCompanyDetails(company)
+        {
+            $('#companyNameHeader').append(company.name);
+
+            displayHistory(company.history);
+            displayNotes(company.notes);
+        }
+
+        function displayHistory(history){
+            $.each(history, function (i, order) {
+                $('#history > tbody')
+                    .append(`
+                        <tr>
+                            <td>${formatDate(new Date(order.orderDate))}</td>
+                            <td>${order.storeCity}</td>
+                        </tr>
+                    `)
+            });
+        }
+
+        function displayNotes(notes) {
+            $.each(notes, function (i, note) {
+                $('#notes > tbody')
+                    .append(`
+                        <tr>
+                            <td>${note.employeeFullName}</td>
+                            <td>${note.invoiceNumber}</td>
+                        </tr>
+                    `)
+            });
+        }
+    </script>
+}

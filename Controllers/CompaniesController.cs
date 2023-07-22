@@ -27,7 +27,7 @@ namespace TestApp.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Company>> Get(int id)
+        public async Task<ActionResult<CompanyFullDto>> Get(int id)
         {
             var company = await context.Companies
                 .Include(x => x.History)
@@ -38,7 +38,7 @@ namespace TestApp.Controllers
             if (company == null)
                 return NotFound();
 
-            return Ok(company);
+            return Ok(mapper.Map<CompanyFullDto>(company));
         }
 
         [HttpPost]

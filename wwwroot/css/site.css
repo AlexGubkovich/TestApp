@@ -25,3 +25,12 @@ thead th {
     color: grey !important;
     font-weight: normal !important;
 }
+
+.table-responsive {
+    max-height: 300px;
+}
+
+.detail {
+    min-width: 300px;
+    height: 400px;
+}

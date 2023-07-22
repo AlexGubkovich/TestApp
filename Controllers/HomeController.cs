@@ -13,7 +13,7 @@ namespace TestApp.Controllers
 
         public IActionResult Details([FromRoute] int id)
         {
-            return Ok(id);
+            return View(id);
         }
 
         public IActionResult Privacy()

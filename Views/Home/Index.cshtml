@@ -3,7 +3,7 @@
 }
 
 <div class="row justify-content-between mb-2">
-    <div class="col-auto">
+    <div class="col-auto d-flex align-items-center">
         <h5>Companies</h5>
     </div>
     <div class="col-auto btn-group" role="group">
@@ -39,7 +39,7 @@
 
         function displayCompanies(companies) {
             $.each(companies, function (i, company) {
-                $('table > tbody:last-child')
+                $('table > tbody')
                     .append(`
                     <tr>
                         <td>
