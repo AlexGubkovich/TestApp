@@ -14,7 +14,7 @@
         new Input { LabelName = "First Name", InputId = "employeeFirstName"},
         new Input { LabelName = "Last Name", InputId = "employeeLastName"},
         new Input { LabelName = "Title", InputId = "employeeTitle"},
-        new Input { LabelName = "Birth Date", InputId = "employeeBirthDate"},
+        new Input { LabelName = "Birth Date", InputId = "employeeBirthDate", InputType = "date"},
         new Input { LabelName = "Position", InputId = "employeePosition"}
     };
 }
@@ -38,29 +38,17 @@
     </div>
     <div class="col-auto border-top border-bottom mx-3 mb-4">
         <detail content-attributes="table-responsive" caption="History" button-images=@(new List<string> { "/images/refresh.svg" })>
-            <table id="history" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Order Date</th>
-                        <th scope="col">Store City</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            @{
+                RenderTable(new[] { "Order Date", "Store City" }, "history");
+            }
         </detail>
     </div>
     <div class="col-auto border-top border-bottom mx-3 mb-4">
         <detail content-attributes="table-responsive" caption="Notes" 
         button-images=@(new List<string> { "/images/add.svg", "/images/remove.svg", "/images/refresh.svg" })>
-            <table id="notes" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Invoice Number</th>
-                        <th scope="col">Employee</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            @{
+                RenderTable(new[] { "Invoice Number", "Employee" }, "notes");
+            }
         </detail>
     </div>
     <div class="col-auto border-top border-bottom mx-3 mb-4">
@@ -68,15 +56,9 @@
             <div class="col-auto">
                 <detail content-attributes="table-responsive" caption="Employees"
                 button-images=@(new List<string> { "/images/add.svg", "/images/edit.svg", "/images/refresh.svg" })>
-                    <table id="employees" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    @{
+                        RenderTable(new [] { "First Name", "Last Name" }, "employees");
+                    }
                 </detail>
             </div>
             <div class="col-auto">
@@ -91,41 +73,11 @@
 </div>
 
 @section Scripts {
+    <script src="~/js/companyDetails.js"></script>
     <script>
         const getCompanyUrl = '@Url.Action("Get", "Companies", new { id = Model })'
         $(document).ready(getRequest(getCompanyUrl, displayCompanyDetails))
 
-        function displayCompanyDetails(company)
-        {
-            $('#companyNameHeader').append(company.name);
-
-            displayHistory(company.history);
-            displayNotes(company.notes);
-        }
-
-        function displayHistory(history){
-            $.each(history, function (i, order) {
-                $('#history > tbody')
-                    .append(`
-                        <tr>
-                            <td>${formatDate(new Date(order.orderDate))}</td>
-                            <td>${order.storeCity}</td>
-                        </tr>
-                    `)
-            });
-        }
-
-        function displayNotes(notes) {
-            $.each(notes, function (i, note) {
-                $('#notes > tbody')
-                    .append(`
-                        <tr>
-                            <td>${note.employeeFullName}</td>
-                            <td>${note.invoiceNumber}</td>
-                        </tr>
-                    `)
-            });
-        }
     </script>
 }
 
@@ -134,6 +86,7 @@
     {
         public string LabelName { get; set; } = string.Empty;
         public string InputId { get; set; } = string.Empty;
+        public string InputType { get; set; } = "text";
     }
 
     private void RenderInputs(IEnumerable<Input> inputs)
@@ -145,9 +98,24 @@
                     <label for="@input.InputId" class="">@input.LabelName:</label>
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control" id="@input.InputId">
+                    <input type="@input.InputType" class="form-control" id="@input.InputId">
                 </div>
             </div>
         }
+    }
+
+    private void RenderTable(IEnumerable<string> tableHeaders, string tableId)
+    {
+        <table id="@tableId" class="table table-bordered">
+            <thead>
+                <tr>
+                    @foreach (var header in tableHeaders)
+                    {
+                        <th scope="col">@header</th>
+                    }
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     }
 }

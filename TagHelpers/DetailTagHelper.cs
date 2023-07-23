@@ -31,7 +31,7 @@ namespace TestApp.TagHelpers
                         {buttons}
                     </div>
                 </div>
-                <div class=""container mb-4 {ContentAttributes}"">
+                <div class=""mb-4 {ContentAttributes}"">
                     {content}
                 </div>
             ");

@@ -35,6 +35,10 @@ thead th {
     height: 400px;
 }
 
+.table tbody tr.highlight td {
+  background-color: #ddd;
+}
+
 /*@media (min-width: 768px) {
     .detail {
         max-width: 200px;
