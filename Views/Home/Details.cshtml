@@ -29,32 +29,32 @@
 </div>
 
 <div class="row p-2">
-    <div class="col-auto border-top border-bottom mx-3 mb-4">
+    <div class="col-auto border-top border-bottom p-0 mx-3 mb-4">
         <detail caption="Info" button-images=@(new List<string> { "/images/check.svg" })>
             @{
                 RenderInputs(companyInputs);
             }
         </detail>
     </div>
-    <div class="col-auto border-top border-bottom mx-3 mb-4">
-        <detail caption="History" tag-id="historyDetail" content-attributes="table-responsive" button-images=@(new List<string> { "/images/refresh.svg" })>
+    <div class="col-auto border-top border-bottom p-0 mx-3 mb-4">
+        <detail caption="History" tag-id="historyDetail" button-images=@(new List<string> { "/images/refresh.svg" })>
             @{
                 RenderTable(new[] { "Order Date", "Store City" }, "history");
             }
         </detail>
     </div>
-    <div class="col-auto border-top border-bottom mx-3 mb-4">
-        <detail caption="Notes" tag-id="notesDetail" content-attributes="table-responsive"
+    <div class="col-auto border-top border-bottom p-0 mx-3 mb-4">
+        <detail caption="Notes" tag-id="notesDetail"
             button-images=@(new List<string> { "/images/add.svg", "/images/remove.svg", "/images/refresh.svg" })>
             @{
                 RenderTable(new[] { "Invoice Number", "Employee" }, "notes");
             }
         </detail>
     </div>
-    <div class="col-auto border-top border-bottom mx-3 mb-4">
+    <div class="col-auto border-top border-bottom p-0 mx-3 mb-4">
         <div class="row">
             <div class="col-auto">
-                <detail caption="Employees" tag-id="employeesDetail" content-attributes="table-responsive"
+                <detail caption="Employees" tag-id="employeesDetail" 
                     button-images=@(new List<string> { "/images/add.svg", "/images/edit.svg", "/images/refresh.svg" })>
                     @{
                         RenderTable(new [] { "First Name", "Last Name" }, "employees");
@@ -121,16 +121,18 @@
 
     private void RenderTable(IEnumerable<string> tableHeaders, string tableId)
     {
-        <table id="@tableId" class="table table-bordered">
-            <thead>
-                <tr>
-                    @foreach (var header in tableHeaders)
-                    {
-                        <th scope="col">@header</th>
-                    }
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="table-responsive">
+            <table id="@tableId" class="table table-bordered">
+                <thead>
+                    <tr>
+                        @foreach (var header in tableHeaders)
+                        {
+                            <th scope="col">@header</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TestApp.Data.Dto
+﻿namespace TestApp.Data.Dto
 {
     public class CompanyDto
     {

@@ -20,7 +20,7 @@ namespace TestApp.Data.Dto
         [StringLength(5)]
         public string State { get; set; } = null!;
 
-        [Required, Phone] 
+        [Required, Phone]
         public string Phone { get; set; } = null!;
     }
 }
