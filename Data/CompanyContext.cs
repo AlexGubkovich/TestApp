@@ -9,11 +9,7 @@ namespace TestApp.Data
         public DbSet<Note> Notes { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-24PO16E;Database=CompanyDB;Integrated Security=True;TrustServerCertificate=True;");
-            base.OnConfiguring(optionsBuilder);
-        }
+        public CompanyContext(DbContextOptions<CompanyContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

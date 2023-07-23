@@ -1,5 +1,5 @@
 function displayCompanyDetails(company) {
-    $('#companyNameHeader').val(company.name);
+    $('#companyNameHeader').append(company.name);
     displayCompanyInfo(company);
     displayHistory(company.history);
     displayNotes(company.notes);

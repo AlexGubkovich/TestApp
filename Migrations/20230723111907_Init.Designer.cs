@@ -12,7 +12,7 @@ using TestApp.Data;
 namespace TestApp.Migrations
 {
     [DbContext(typeof(CompanyContext))]
-    [Migration("20230721130125_Init")]
+    [Migration("20230723111907_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -127,7 +127,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 1,
-                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1247),
+                            BirthDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2646),
                             CompanyId = 1,
                             FirstName = "John",
                             LastName = "Heart",
@@ -137,7 +137,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 2,
-                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1292),
+                            BirthDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2687),
                             CompanyId = 1,
                             FirstName = "Olivia",
                             LastName = "Peyton",
@@ -147,7 +147,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 3,
-                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1295),
+                            BirthDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2690),
                             CompanyId = 2,
                             FirstName = "Robert",
                             LastName = "Reagan",
@@ -157,7 +157,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 4,
-                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1298),
+                            BirthDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2693),
                             CompanyId = 2,
                             FirstName = "Cynthia",
                             LastName = "Stanvick",
@@ -167,7 +167,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 5,
-                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1300),
+                            BirthDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2695),
                             CompanyId = 3,
                             FirstName = "Tim",
                             LastName = "Cook",
@@ -177,7 +177,7 @@ namespace TestApp.Migrations
                         new
                         {
                             Id = 6,
-                            BirthDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1303),
+                            BirthDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2698),
                             CompanyId = 3,
                             FirstName = "Adam",
                             LastName = "Smith",
@@ -286,42 +286,42 @@ namespace TestApp.Migrations
                         {
                             Id = 1,
                             CompanyId = 1,
-                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1306),
+                            OrderDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2702),
                             StoreCity = "Las Vegas"
                         },
                         new
                         {
                             Id = 2,
                             CompanyId = 1,
-                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1309),
+                            OrderDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2704),
                             StoreCity = "Las Vegas"
                         },
                         new
                         {
                             Id = 3,
                             CompanyId = 2,
-                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1310),
+                            OrderDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2706),
                             StoreCity = "San Jose"
                         },
                         new
                         {
                             Id = 4,
                             CompanyId = 2,
-                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1312),
+                            OrderDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2708),
                             StoreCity = "San Jose"
                         },
                         new
                         {
                             Id = 5,
                             CompanyId = 3,
-                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1314),
+                            OrderDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2710),
                             StoreCity = "Seattle"
                         },
                         new
                         {
                             Id = 6,
                             CompanyId = 3,
-                            OrderDate = new DateTime(2023, 7, 21, 16, 1, 25, 503, DateTimeKind.Local).AddTicks(1316),
+                            OrderDate = new DateTime(2023, 7, 23, 14, 19, 7, 262, DateTimeKind.Local).AddTicks(2713),
                             StoreCity = "Seattle"
                         });
                 });

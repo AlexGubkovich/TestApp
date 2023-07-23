@@ -73,7 +73,7 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/companyDetails.js"></script>
+    <script src="~/js/companyDetails.js" asp-append-version="true"></script>
     <script>
         const getCompanyUrl = '@Url.Action("Get", "Companies", new { id = Model })'
         const getHistryUrl = '@Url.Action("GetHistory", "Companies", new { id = Model })'

@@ -69,6 +69,7 @@ namespace TestApp.Controllers
         {
             var notes = await context.Notes
                 .Where(o => o.CompanyId == id)
+                .Include(e => e.Employee)
                 .ToListAsync();
 
             return Ok(mapper.Map<IEnumerable<NoteDto>>(notes));
