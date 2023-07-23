@@ -34,3 +34,9 @@ thead th {
     min-width: 300px;
     height: 400px;
 }
+
+/*@media (min-width: 768px) {
+    .detail {
+        max-width: 200px;
+    }
+}*/

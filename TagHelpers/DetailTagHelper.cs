@@ -20,7 +20,7 @@ namespace TestApp.TagHelpers
             "));
 
             output.TagName = "div";
-            output.Attributes.SetAttribute("class", "detail");
+            output.Attributes.SetAttribute("class", "container detail");
 
             output.Content.AppendHtml($@"
                 <div class=""row justify-content-between mt-1 mb-2"">
@@ -31,7 +31,7 @@ namespace TestApp.TagHelpers
                         {buttons}
                     </div>
                 </div>
-                <div class=""row mb-4 {ContentAttributes}"">
+                <div class=""container mb-4 {ContentAttributes}"">
                     {content}
                 </div>
             ");
