@@ -8,6 +8,7 @@ namespace TestApp.TagHelpers
         public string Caption { get; set; } = string.Empty;
         public List<string> ButtonImages { get; set; } = new();
         public string ContentAttributes { get; set; } = string.Empty;
+        public string TagId { get; set; } = string.Empty;
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             var childContext = output.GetChildContentAsync().Result;
@@ -21,6 +22,7 @@ namespace TestApp.TagHelpers
 
             output.TagName = "div";
             output.Attributes.SetAttribute("class", "container detail");
+            output.Attributes.SetAttribute("id", TagId);
 
             output.Content.AppendHtml($@"
                 <div class=""row justify-content-between mt-1 mb-2"">

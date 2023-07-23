@@ -1,6 +1,5 @@
 function displayCompanyDetails(company) {
-    $('#companyNameHeader').append(company.name);
-
+    $('#companyNameHeader').val(company.name);
     displayCompanyInfo(company);
     displayHistory(company.history);
     displayNotes(company.notes);
@@ -8,7 +7,6 @@ function displayCompanyDetails(company) {
 }
 
 function displayEmployee(employee) {
-    ;
     $('#employeeFirstName').val(employee.firstName);
     $('#employeeLastName').val(employee.lastName);
     $('#employeeTitle').val(employee.title);
@@ -25,6 +23,7 @@ function displayCompanyInfo(company) {
 }
 
 function displayHistory(history) {
+    $('#history > tbody tr').remove()
     $.each(history, function (i, order) {
         $('#history > tbody')
             .append(`
@@ -37,6 +36,7 @@ function displayHistory(history) {
 }
 
 function displayNotes(notes) {
+    $('#notes > tbody tr').remove()
     $.each(notes, function (i, note) {
         $('#notes > tbody')
             .append(`
@@ -49,6 +49,7 @@ function displayNotes(notes) {
 }
 
 function displayEmployees(employees) {
+    $('#employees > tbody tr').remove()
     $.each(employees, function (i, employee) {
         $('#employees > tbody')
             .append(`

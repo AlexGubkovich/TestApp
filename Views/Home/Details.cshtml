@@ -37,15 +37,15 @@
         </detail>
     </div>
     <div class="col-auto border-top border-bottom mx-3 mb-4">
-        <detail content-attributes="table-responsive" caption="History" button-images=@(new List<string> { "/images/refresh.svg" })>
+        <detail caption="History" tag-id="historyDetail" content-attributes="table-responsive" button-images=@(new List<string> { "/images/refresh.svg" })>
             @{
                 RenderTable(new[] { "Order Date", "Store City" }, "history");
             }
         </detail>
     </div>
     <div class="col-auto border-top border-bottom mx-3 mb-4">
-        <detail content-attributes="table-responsive" caption="Notes" 
-        button-images=@(new List<string> { "/images/add.svg", "/images/remove.svg", "/images/refresh.svg" })>
+        <detail caption="Notes" tag-id="notesDetail" content-attributes="table-responsive"
+            button-images=@(new List<string> { "/images/add.svg", "/images/remove.svg", "/images/refresh.svg" })>
             @{
                 RenderTable(new[] { "Invoice Number", "Employee" }, "notes");
             }
@@ -54,8 +54,8 @@
     <div class="col-auto border-top border-bottom mx-3 mb-4">
         <div class="row">
             <div class="col-auto">
-                <detail content-attributes="table-responsive" caption="Employees"
-                button-images=@(new List<string> { "/images/add.svg", "/images/edit.svg", "/images/refresh.svg" })>
+                <detail caption="Employees" tag-id="employeesDetail" content-attributes="table-responsive"
+                    button-images=@(new List<string> { "/images/add.svg", "/images/edit.svg", "/images/refresh.svg" })>
                     @{
                         RenderTable(new [] { "First Name", "Last Name" }, "employees");
                     }
@@ -76,8 +76,23 @@
     <script src="~/js/companyDetails.js"></script>
     <script>
         const getCompanyUrl = '@Url.Action("Get", "Companies", new { id = Model })'
+        const getHistryUrl = '@Url.Action("GetHistory", "Companies", new { id = Model })'
+        const getNotesUrl = '@Url.Action("GetNotes", "Companies", new { id = Model })'
+        const getEmployeesUrl = '@Url.Action("GetEmployees", "Companies", new { id = Model })'
+
         $(document).ready(getRequest(getCompanyUrl, displayCompanyDetails))
 
+        $('#notesDetail button:nth-child(3)').click(function () {
+            getRequest(getNotesUrl, displayNotes)
+        });
+
+        $('#historyDetail button:nth-child(1)').click(function () {
+            getRequest(getHistryUrl, displayHistory)
+        });
+
+        $('#employeesDetail button:nth-child(3)').click(function () {
+            getRequest(getEmployeesUrl, displayEmployees)
+        });
     </script>
 }
 
